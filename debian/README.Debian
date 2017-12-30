@@ -1,0 +1,10 @@
+remmina for Debian
+------------------
+
+Notes for Keymaping:
+
+For use the superkey + another please unset Keymap to empty
+('Keymap=' in connection file instead of 'Keymap=Map Meta Keys').
+
+
+ -- Jörg Frings-Fürst <debian@jff-webhosting.net>  Mon, 29 Sep 2014 09:17:15 +0200

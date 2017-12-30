@@ -1,0 +1,4 @@
+version=3
+opts=dversionmangle=s/\+dfsg.*// \
+filenamemangle=s/.+\/v?(\d\S+)\.tar\.gz/remmina_$1\.tar\.gz/ \
+https://github.com/FreeRDP/Remmina/releases /FreeRDP/Remmina/archive/v(.+)\.(?:tar\.xz|txz|tar\.bz2|tbz2|tar\.gz|tgz) debian debian/repack.sh

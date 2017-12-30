@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+
+# hardening
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+LDFLAGS += -Wl,--as-needed
+
+%:
+	dh $@
+
+override_dh_install:
+	dh_install
+	[ -d debian/remmina-common ] && \
+		find $(CURDIR)/debian/remmina-common -name "*remmina.desktop" -delete && \
+		find $(CURDIR)/debian/remmina-common -name "*remmina.1" -delete && \
+		find $(CURDIR)/debian/remmina-common -type d -empty -delete || true
+
+override_dh_installchangelogs:
+	dh_installchangelogs ChangeLog
