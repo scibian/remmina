@@ -1,0 +1,275 @@
+Don't edit anymore this file, use instead git@github.com:skywinder/github-changelog-generator.git to generate CHANGELOG.md
+
+***** 1.0.0 - 2014-07-14 *****
+Pull requests
+o Typo in preference name broke key mapping in VNC
+o Fix for issue #251:  RDP: No caret on explorer address bar and white squares
+                            instead of small icons
+o Fix issue with invisible toolbar in fullscreen.
+
+o Fixes from repzilon and Mike Gilbert
+  + repzilon
+    - Replaced missed xzalloc with calloc
+    - cmake: add WITH_TRANSLATIONS to disable .po files (Fixes: #23)
+  + Mike Gilbert
+    - Remove duplicate Actions key in desktop file
+  + repzilon
+    - Fixed Gentoo QA Notice in desktop file
+  + repzilon
+    - Recompressed icons. Also removed executable bit to some icons
+  + repzilon
+    - freerdp-channels was remed to freerdp-client
+  + repzilon
+    - plugins-rdp: fix crash when free'ing cursor
+    - Fixes #120: Fix linking of avahi
+    - cmake: small change in FindAVAHI
+    - Fixes #113: call add_subdirectory after ALL add_definitions …
+    - Detect GTK before other packages …
+  + repzilon   Updated README with GTK2 on uclibc instructions
+  + repzilon   Merge commit 'b6a55ae6f4633d55f8f03e7ce2eeb5899514a8fc'
+  + repzilon   Corrected compile warnings
+  + repzilon   GTK+2 compatibility
+               * RDP mouse cursor image reference count is no longer decremented. It
+                 probably introduces a memory leak, but decrementing the reference
+                 count causes a segfault.
+               * The Quick Connect bar of the main window no longer take half of the
+                 window height.
+               * The protocol selector of the Quick Connect bar looks like a regular
+                 drop-down list on QtCurve theme.
+
+
+
+***** 1.0.0 - 2012-02-10 *****
+Main program design and functionality:
+o Switch to the CMake build system
+o Refactoring of code style
+o Changing file name convention
+
+RDP protocol related:
+o Support for FreeRDP 1.0
+o Support for RemoteFX
+o Support for Network Level Authentication
+o Added certificate validation prompt
+
+***** 0.9.0 - 2010-12-12 *****
+Main program design and functionality:
+o Rewrite plugin system so that plugins can have more flexibilities
+o Integrate scrolled window and fullscreen view modes into one button
+o Remove quick connect menu and consolidate the feature with Connection->New
+  menu. Move other Edit menu items under Connection menu as well. See
+  http://bugs.debian.org/591755
+o Change 'Quit' menu item to 'Close'
+o Show version information in plugin window
+o Add link button to resolution field to bring up to resolution preference
+o Calculate auto-fit window size more correctly
+o Add subgroup feature, using '/' as subgroup delimiter
+o Remember group expansion status
+o Add shortcut key names to toolbar tooltips
+o Support shortcut key to be same as hostkey, which will be activated by just
+  press(down and up) the hostkey. By default, this is the Keyboard grabbing
+  shortcut.
+o Add pin button to floating toolbar
+o Add tray icon and various related preferences options. All featues in the
+  original GNOME/XFCE panel applet have been ported in it, plus all windows
+  can be minimized to tray (default is off)
+o Add Help/Homepage menu
+
+RDP protocol related:
+o Support TLS negotiation added in FreeRDP 0.8
+o Support audio input redirection added in FreeRDP 0.8
+o Add new preference option 'Use client keyboard mapping' to obey X key
+  mappings (wfaulk)
+
+VNC protocol related:
+o Change 'Proxy Destination' to 'Repeater' to make it clearer. Now the 'Server'
+  is the server and 'Repeater' is the repeater. :)
+
+NX protocol related:
+o Add SSH tunnel
+
+SSH protocol related:
+o Add ability to spawn new session from toolbar menu
+o Add Copy/Paste toolbar menu for SSH terminal
+o Add Font and Scrollback lines preference option
+o Add ability to show/hide hidden files in SFTP
+o Remember paned position in SFTP window
+o Add startup path option in SFTP
+
+***** 0.8.0 - 2010-07-10 *****
+Main program design and functionality:
+o Introduce a new plugin system. All protocols except SSH are moved to a new
+  source package 'remmina-plugins' so that they can have bug-fixes and releases
+  separately. A new Plugins menu is added accordingly
+o Add Hostkey feature and related Preference options. Hostkey feature provides
+  an easy and reliable way to access various remote desktop toolbar functions
+  through customizable shortcut key combinations
+o Add Attachable / Detachable Tabs feature. Tabs now can be merged or separated
+  between windows.
+o Add ability to show / hide the toolbar through Hostkey
+o Add Quick Search filter feature
+o Add 'Save Settings When Starting the Connection' preference option, default
+  is true. If set to false, profile will not be saved if only 'Connect' button
+  is clicked
+o Add 'Always show tab' option
+o Add a little cosmetic motion effect to the floating toolbar
+o Add Debug Window feature in Help menu
+o Add Online Wiki link in Help menu
+o Support IPv6 address notation
+ 
+RDP protocol related:
+o Bring in FreeRDP (http://freerdp.sourceforge.net) project as rdesktop
+  replacement. Most of the features described below are direct benefits
+  from the FreeRDP project
+o FreeRDP provides a new keyboard system which is based on XKB and Windows
+  keyboard layouts. In most cases it can detect the keyboard layout and work
+  out of the box. It's also possible to manually assign a keyboard layout.
+o Scaling remote screen is supported
+o More clipboard formats (HTML, bitmaps, etc) are supported
+o Better disk/printer sharing. Works with Windows 7 and Windows 2008
+o Countless of original rdesktop bug-fixes and clean up
+o Support importing Windows and tsclient .rdp file, either by drag-n-drop to
+  the main window, by Tools / Import menu, or by -e / -c command line argument
+o Support exporting Windows .rdp file
+
+VNC protocol related:
+o Support disabling TLS/VeNCrypt encryption when connecting to VNC servers
+  that supports it, like Vino
+o Support Refresh screen
+o Add UltraVNC repeater support
+o Add reverse SSH tunnel support for VNC incoming connection
+o Add disabling clipboard synchronization option
+o Better cursor and color handling
+
+NX protocol related:
+o New protocol NX is supported. Depends on libssh and nxproxy
+o Support resizing of remote session and scaling of console session
+o Support session management, including resume, attach, terminate
+o Support custom private key and various trivial options
+
+SSH protocol related:
+o SSH terminal and SFTP now works as internal plugins, and can be tabbed or
+  toggled fullscreen like any other protocols
+o Add startup program support in SSH terminal
+o Add folder uploading support in SFTP
+o Add new 'Tunnel via loopback' option
+o Support tunneling through same server at custom port using ':port' custom
+  server notation
+
+XDMCP protocol related:
+o Support running a startup program from SSH tunnel, without launching XDMCP
+  login window
+
+Telepathy support:
+o Implement as a special plugin so it will work with desktop sharing feature
+  in Empathy IM client
+
+***** 0.7.0 - 2009-12-12 *****
+o Add new XDMCP protocol (using Xephyr)
+o Implement XDMCP session over SSH (using xqproxy on SSH server side)
+o Add Public Key (Automatic) option to support ssh-agent, by Alex Chateau <ash@zednet.lv>
+o A lot of cosmetic changes
+o Use icon theme approach to install all icons
+o Fix RGB color issue with VMware VNC server
+o Enhanced groups and resolution editing
+o Remove "run in separated process" option. Manage all windows in single process
+o Upgrade glib dependancy to 2.20 and gtk to 2.16
+o Implement single instance application using libunique
+o Add Copy feature to create a new copy of existing connection profile
+o Add RDP Sound (off/local/remote) option
+o Add RDP local printer sharing option
+o Support Tab Interface and related options (Tab by Group / Tab by Protocol / Tab All / Tab None)
+o Simplify Groups setting by using combobox. Groups tab in preference dialog removed.
+o New application logo designed by Martin Lettner <m.lettner@gmail.com>
+o Support more VNC security types: TLS, VeNCrypt, MSLogon
+o Remember sort column id and order in main window
+
+***** 0.6.0 - 2009-07-07 *****
+o Add Avahi support using libavahi-ui
+o Option to start a connection in view-only mode
+o Enhanced command line arguments to support new grdc-applet features
+o Black Scrolled Viewport border (Nikolay Botev)
+o Better mouse cursor (both server and client side) (Nikolay Botev)
+o Keyboard mapping option for rdesktop (RDP)
+o VNC Chat feature
+o Fix VNC desktop resize bug (Nikolay Botev)
+o VNC Beep feature (Nikolay Botev)
+o A SFTP client (stand-alone or integrate with SSH tunnel)
+o SSH terminal feature integrated with SSH tunnel
+o Add RDP options: Share folder, Startup program/path and Advanced arguments
+o New Preference option Default View Mode
+o Better default window size to match server resolution
+o New VNC advanced option: Horizontal and Vertical scale
+o Saved password is now encrypted
+o Quick Connect protocol sub menus and connection protocol icons
+o Support VNC keyboard mapping
+o Fix VNC peer disconnect bug (Alex Chateau)
+o Greek translation added by Elias Sofronas <esofronas@gmail.com>
+
+***** 0.5.1 - 2009-05-01 *****
+o Fixed VNC crash in scrolled viewport mode
+o Fixed VNC cuttext "loopback"
+
+***** 0.5.0 - 2009-04-14 *****
+o Recent server names in quick connect
+o Invisible floating toolbar option
+o Floating toolbar transparency feature (by mouse scrolling)
+o Enhanced Keyboard grabbing feature
+o Support VNC incoming connections
+o Changed Keyboard grabbing icon
+o Center the client in the window when the remote desktop area is smaller than the window (Nikolay)
+o Change the background color of the viewport to black (Nikolay)
+o Use a blank dot as local cursor if remote cursor is shown in VNC
+o Change button order in all dialogs and apply alternative order
+o Popup menu for list/tree view in main window
+o Support UltraVNC extension "Disable Server Input"
+o Eliminate passphrase prompt if SSH private key has empty passphrase
+o Reuse existing SSH session in case of VNC authentication failure
+o Change desktop file's Name and Comments
+
+***** 0.4.0 - 2009-02-24 *****
+o SSH Tunneling support and SSH Tunnel local port option
+o VNC Color Depth support
+o VNC Scaled Mode toggle and Scale Quality option
+o VNC Poor quality level changed to the lowest to reduce a little bandwidth (marmuta)
+o RDP new option to attach to console
+o Auto-fit window button in scrolled window mode (resize to fit remote resolution)
+o Viewport fullscreen mode nows works with GTK 2.14
+o Keyboard grabbing enabled in scrolled window mode
+o Tree View / List View option
+o Double-click Action option
+o New Applet Option: Show Quick Connect on top of the Menu
+o New Applet Option: Hide Total Count in Group Expander
+
+***** 0.3.1 - 2009-01-26 *****
+o Fixed: Pressed keys won't release when focus lost in VNC
+o Remember main window and connection window state (size/maximized)
+o Shortcut key changed for Quit(^q) and Quick Connect(^u)
+
+***** 0.3.0 - 2009-01-16 *****
+o Double-click to open the connection
+o Customizable RDP resolution list
+o Ability to change VNC quality while connected
+o Support View-Only VNC
+o New View menu to show/hide toolbar or statusbar
+o Small toolbar button option
+o A label in floating toolbar indicating the current connection
+o New Grouping feature
+o Ability to save the connection settings as default values
+o Polish translation added by: Jakub Tomczak <tomczak.jakub@gmail.com>
+o New option to remember the last view mode of each connection
+o New option to open the connections in separated processes
+o A new Preferences dialog for the new options
+o A new look of the remote desktop preference dialog
+
+***** 0.2.0 - 2009-01-05 *****
+o VNC support is added
+o A lot of code arrangement plus some bug fixes
+
+***** 0.1.1 - 2008-12-28 *****
+o Spainish translation added by: Julio Napurí Carlos <julionc@gmail.com>
+o Added a .desktop file
+o Gnome panel applet support completed
+
+***** 0.1.0 - 2008-12-25 *****
+o First public release!
+
