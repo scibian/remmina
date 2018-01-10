@@ -1,3 +1,13 @@
+remmina (1.2.0-rcgit.26+dfsg-1sci9u1) scibian9; urgency=medium
+
+  * Backport to Scibian 9
+  * Do not ship remmina-plugin-nx because of conflicting build-dependencies
+    on libssl1.0-dev and libssl-dev
+  * Drop unsatisfiable build-dependency on libayatana-appindicator3-dev and
+    libssh-dev (>= 0.8.0~20170825.94fa1e38)
+
+ -- Scibian Project <packaging@scibian.org>  Tue, 09 Jan 2018 10:01:57 +0100
+
 remmina (1.2.0-rcgit.26+dfsg-1) unstable; urgency=medium
 
   * New upstream release

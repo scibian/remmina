@@ -5,8 +5,13 @@ export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
 LDFLAGS += -Wl,--as-needed
 
+export DH_OPTIONS = -Nremmina-plugin-nx
+
 %:
 	dh $@
+
+override_dh_auto_configure:
+	dh_auto_configure -- -DWITH_LIBSSH=OFF
 
 override_dh_install:
 	dh_install
